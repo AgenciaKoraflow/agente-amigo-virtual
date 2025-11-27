@@ -1,12 +1,46 @@
 import logo from "@/assets/Logo-Koraflow.png";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const Header = () => {
+  const { theme, setTheme } = useTheme();
+
+  const handleStartNow = () => {
+    const chatButton = document.getElementById('chat-button');
+    chatButton?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => chatButton?.click(), 300);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <img src={logo} alt="Koraflow" className="h-8" />
+            <img src={logo} alt="Koraflow" className="h-6 md:h-8" />
+          </div>
+          
+          <div className="flex items-center gap-2 md:gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="h-9 w-9"
+              aria-label="Toggle theme"
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+            
+            <Button 
+              onClick={handleStartNow}
+              className="shadow-glow"
+              size="sm"
+            >
+              <span className="hidden sm:inline">Começar Agora</span>
+              <span className="sm:hidden">Começar</span>
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
           </div>
         </div>
       </div>

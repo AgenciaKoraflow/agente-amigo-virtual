@@ -20,13 +20,13 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-24 relative bg-muted/30">
+    <section className="py-12 md:py-24 relative bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+        <div className="text-center mb-12 md:mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
             Como Funciona
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Um agente inteligente treinado especificamente para o seu negócio, que nunca dorme, nunca falha e trabalha incansavelmente para você
           </p>
         </div>
@@ -35,27 +35,27 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <div 
               key={index}
-              className="relative mb-12 last:mb-0 animate-fade-in"
+              className="relative mb-8 md:mb-12 last:mb-0 animate-fade-in"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <div className="grid md:grid-cols-12 gap-8 items-center">
+              <div className="grid md:grid-cols-12 gap-4 md:gap-8 items-center">
                 {/* Number */}
                 <div className="md:col-span-2 flex justify-center md:justify-start">
-                  <div className="text-7xl font-bold text-primary/20">
+                  <div className="text-5xl md:text-7xl font-bold text-primary/20">
                     {step.number}
                   </div>
                 </div>
                 
                 {/* Content */}
                 <div className="md:col-span-10">
-                  <div className="gradient-subtle p-8 rounded-3xl shadow-soft relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
+                  <div className="gradient-subtle p-6 md:p-8 rounded-3xl shadow-soft relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-primary/3 rounded-full blur-3xl" />
                     <div className="relative">
-                      <div className="flex items-start gap-4">
-                        <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <div className="flex items-start gap-3 md:gap-4">
+                        <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" />
                         <div>
-                          <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>
-                          <p className="text-muted-foreground text-lg leading-relaxed">
+                          <h3 className="text-xl md:text-2xl font-semibold mb-2 md:mb-3">{step.title}</h3>
+                          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
                             {step.description}
                           </p>
                         </div>
