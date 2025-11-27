@@ -36,31 +36,31 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="py-24 relative">
+    <section className="py-12 md:py-24 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+        <div className="text-center mb-12 md:mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
             Recursos Que Fazem a Diferença
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Tecnologia de ponta para transformar cada interação em uma experiência excepcional
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <Card 
                 key={index}
-                className="p-8 gradient-subtle shadow-soft hover:shadow-glow transition-smooth hover:-translate-y-2 animate-fade-in"
+                className="p-6 md:p-8 gradient-subtle shadow-soft hover:shadow-glow transition-smooth hover:-translate-y-2 animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                  <Icon className="w-7 h-7 text-primary" />
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-primary/5 flex items-center justify-center mb-4 md:mb-6">
+                  <Icon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">{feature.title}</h3>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{feature.description}</p>
               </Card>
             );
           })}

@@ -17,7 +17,7 @@ const ChatButton = () => {
       <Button
         id="chat-button"
         size="lg"
-        className="fixed bottom-6 right-6 z-50 h-16 w-16 rounded-full shadow-glow hover:shadow-[0_0_60px_hsl(256_60%_36%/0.4)] p-0 animate-pulse hover:animate-none transition-all duration-300 hover:scale-110"
+        className="fixed bottom-6 right-6 z-50 h-16 w-16 rounded-full shadow-glow hover:shadow-[0_0_60px_hsl(256_60%_36%/0.4)] p-0 transition-all duration-300 hover:scale-110"
         onClick={() => setIsOpen(true)}
       >
         <MessageCircle className="h-7 w-7" />

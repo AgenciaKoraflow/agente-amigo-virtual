@@ -36,51 +36,51 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-12 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 gradient-subtle" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <div className="text-center mb-12 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
               Dúvidas Frequentes
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground">
               Encontre respostas para as principais questões sobre nossas soluções de IA.
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="mb-12 animate-fade-in">
+          <Accordion type="single" collapsible className="mb-8 md:mb-12 animate-fade-in">
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left text-lg">
+                <AccordionTrigger className="text-left text-base md:text-lg">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-sm md:text-base text-muted-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
 
-          <div className="bg-gradient-card rounded-2xl p-8 text-center animate-fade-in border border-border/50">
-            <h3 className="text-2xl font-bold mb-4">
+          <div className="bg-gradient-card rounded-2xl p-6 md:p-8 text-center animate-fade-in border border-border/50">
+            <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">
               Não encontrou sua resposta?
             </h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
               Nossa equipe está disponível para esclarecer qualquer dúvida específica sobre sua implementação.
             </p>
             <Button 
               size="lg"
-              className="shadow-glow hover:shadow-[0_0_60px_hsl(256_60%_36%/0.3)] px-10 py-6 text-lg font-semibold group transition-all duration-300 hover:scale-105"
+              className="shadow-glow hover:shadow-[0_0_60px_hsl(256_60%_36%/0.3)] px-8 md:px-10 py-5 md:py-6 text-base md:text-lg font-semibold group transition-all duration-300 hover:scale-105"
               onClick={() => {
                 const chatButton = document.getElementById('chat-button');
                 chatButton?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                chatButton?.click();
+                setTimeout(() => chatButton?.click(), 300);
               }}
             >
               Falar com Especialista
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 w-4 md:w-5 h-4 md:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
