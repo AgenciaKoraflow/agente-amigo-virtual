@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { ShoppingBag, Headphones, Briefcase, GraduationCap } from "lucide-react";
+import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const useCases = [
   {
@@ -29,10 +30,16 @@ const useCases = [
 ];
 
 const UseCases = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.05 });
+
   return (
     <section className="py-12 md:py-24 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16 animate-fade-in">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 md:mb-16 scroll-hidden ${headerVisible ? 'scroll-visible' : ''}`}
+        >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
             Casos de Uso Comprovados
           </h2>
@@ -41,17 +48,16 @@ const UseCases = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+        <div ref={gridRef} className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
           {useCases.map((useCase, index) => {
             const Icon = useCase.icon;
             return (
               <Card 
                 key={index}
-                className="p-6 md:p-8 gradient-subtle shadow-soft hover:shadow-glow transition-smooth group animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className={`p-6 md:p-8 gradient-subtle shadow-soft card-hover group scroll-hidden stagger-${index + 1} ${gridVisible ? 'scroll-visible' : ''}`}
               >
-                <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-primary/5 flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-smooth">
-                  <Icon className="w-7 h-7 md:w-8 md:h-8 text-primary" />
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-primary/5 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-primary/10 transition-colors">
+                  <Icon className="w-7 h-7 md:w-8 md:h-8 text-primary icon-hover" />
                 </div>
                 <h3 className="text-xl md:text-2xl font-semibold mb-2 md:mb-3">{useCase.title}</h3>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-3 md:mb-4">

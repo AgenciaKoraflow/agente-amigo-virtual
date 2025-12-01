@@ -6,8 +6,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ArrowRight } from "lucide-react";
+import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const FAQ = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: accordionRef, isVisible: accordionVisible } = useScrollAnimation({ threshold: 0.05 });
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
+
   const faqs = [
     {
       question: "Como funciona a implementação dos agentes de IA?",
@@ -41,7 +46,10 @@ const FAQ = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 md:mb-16 animate-fade-in">
+          <div 
+            ref={headerRef}
+            className={`text-center mb-12 md:mb-16 scroll-hidden ${headerVisible ? 'scroll-visible' : ''}`}
+          >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
               Dúvidas Frequentes
             </h2>
@@ -50,20 +58,29 @@ const FAQ = () => {
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="mb-8 md:mb-12 animate-fade-in">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left text-base md:text-lg">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm md:text-base text-muted-foreground">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div ref={accordionRef}>
+            <Accordion type="single" collapsible className="mb-8 md:mb-12">
+              {faqs.map((faq, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className={`scroll-hidden stagger-${index + 1} ${accordionVisible ? 'scroll-visible' : ''}`}
+                >
+                  <AccordionTrigger className="text-left text-base md:text-lg hover:text-primary transition-colors">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm md:text-base text-muted-foreground">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
 
-          <div className="bg-gradient-card rounded-2xl p-6 md:p-8 text-center animate-fade-in border border-border/50">
+          <div 
+            ref={ctaRef}
+            className={`bg-gradient-card rounded-2xl p-6 md:p-8 text-center border border-border/50 scroll-hidden ${ctaVisible ? 'scroll-visible' : ''}`}
+          >
             <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">
               Não encontrou sua resposta?
             </h3>
@@ -72,7 +89,7 @@ const FAQ = () => {
             </p>
             <Button 
               size="lg"
-              className="shadow-glow hover:shadow-[0_0_60px_hsl(256_60%_36%/0.3)] px-8 md:px-10 py-5 md:py-6 text-base md:text-lg font-semibold group transition-all duration-300 hover:scale-105"
+              className="shadow-glow hover:shadow-[0_0_60px_hsl(256_60%_36%/0.3)] px-8 md:px-10 py-5 md:py-6 text-base md:text-lg font-semibold group transition-all duration-300 hover:scale-105 shimmer-effect"
               onClick={() => {
                 const chatButton = document.getElementById('chat-button');
                 chatButton?.scrollIntoView({ behavior: 'smooth', block: 'center' });

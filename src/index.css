@@ -47,19 +47,12 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -147,6 +140,7 @@ All colors MUST be HSL.
     transition: var(--transition-smooth);
   }
   
+  /* Float animation */
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -156,6 +150,7 @@ All colors MUST be HSL.
     50% { transform: translateY(-20px); }
   }
   
+  /* Fade in animation */
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }
@@ -168,6 +163,184 @@ All colors MUST be HSL.
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  
+  /* Slide up animation */
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Slide in from left */
+  .animate-slide-left {
+    animation: slideLeft 0.6s ease-out forwards;
+  }
+  
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Slide in from right */
+  .animate-slide-right {
+    animation: slideRight 0.6s ease-out forwards;
+  }
+  
+  @keyframes slideRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Scale in animation */
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Bounce animation */
+  .animate-bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+  
+  @keyframes bounceIn {
+    from {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Shimmer effect for buttons */
+  .shimmer-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(0 0% 100% / 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+  
+  .shimmer-effect:hover::before {
+    left: 100%;
+  }
+  
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 20px 40px -15px hsl(256 60% 36% / 0.15),
+      0 0 30px hsl(256 60% 36% / 0.08);
+  }
+  
+  /* Scroll animation states */
+  .scroll-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .scroll-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Stagger delays */
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
+  .stagger-6 { transition-delay: 0.6s; }
+  
+  /* Hero text reveal */
+  .hero-text-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroReveal 0.8s ease-out forwards;
+  }
+  
+  @keyframes heroReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Icon hover rotation */
+  .icon-hover {
+    transition: transform 0.3s ease;
+  }
+  
+  .group:hover .icon-hover {
+    transform: rotate(5deg) scale(1.1);
+  }
+  
+  /* Pulse glow effect */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(256 60% 36% / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(256 60% 36% / 0.4);
     }
   }
 }
