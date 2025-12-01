@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background gradient */}
-      <div className="absolute inset-0 gradient-hero opacity-3" />
+      <div className="absolute inset-0 gradient-subtle" />
       
       {/* Animated background elements */}
       <div className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float" />
