@@ -23,7 +23,7 @@ const CTA = () => {
           <div className="text-center">
             <Button 
               size="lg" 
-              className="shadow-glow hover:shadow-[0_0_60px_hsl(256_60%_36%/0.3)] px-10 py-6 text-lg font-semibold group transition-all duration-300 hover:scale-105"
+              className="shadow-glow hover:shadow-[0_0_60px_hsl(215_7%_57%/0.3)] px-10 py-6 text-lg font-semibold group transition-all duration-300 hover:scale-105 shimmer-effect"
               onClick={() => {
                 const chatButton = document.getElementById('chat-button');
                 chatButton?.scrollIntoView({ behavior: 'smooth', block: 'center' });
