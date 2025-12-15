@@ -72,7 +72,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="hover:scale-105 transition-transform border-border hover:border-violet/50 hover:text-violet group"
+                className="hover:scale-105 transition-transform border-border hover:border-violet hover:bg-violet hover:text-white group"
                 onClick={() => setShowDemo(true)}
               >
                 <Play className="mr-2 w-4 h-4 group-hover:scale-110 transition-transform" />

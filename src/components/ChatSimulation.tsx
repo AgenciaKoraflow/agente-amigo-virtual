@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { ChevronLeft, Phone, Video, MoreVertical } from "lucide-react";
 
 type Message = {
   role: 'cliente' | 'kora';
@@ -90,48 +91,99 @@ const ChatSimulation = ({ niche }: ChatSimulationProps) => {
   }, [visibleMessages, messages.length]);
 
   return (
-    <div className="bg-muted/30 rounded-xl p-4 h-[340px] overflow-y-auto border border-border">
-      <div className="space-y-3">
-        {messages.slice(0, visibleMessages).map((msg, idx) => (
-          <div
-            key={idx}
-            className={cn(
-              "flex animate-fade-in",
-              msg.role === 'cliente' ? 'justify-end' : 'justify-start'
-            )}
-          >
-            <div
-              className={cn(
-                "max-w-[80%] px-4 py-2 rounded-2xl text-sm",
-                msg.role === 'cliente'
-                  ? 'bg-violet text-violet-foreground rounded-br-sm'
-                  : 'bg-background border border-border rounded-bl-sm'
-              )}
-            >
-              {msg.text}
-            </div>
-          </div>
-        ))}
+    <div className="mx-auto w-full max-w-[280px]">
+      {/* Phone Frame */}
+      <div className="relative bg-zinc-900 rounded-[2.5rem] p-2 shadow-2xl border-4 border-zinc-700">
+        {/* Dynamic Island / Notch */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-zinc-900 rounded-b-2xl z-10" />
         
-        {isTyping && visibleMessages < messages.length && (
-          <div className={cn(
-            "flex",
-            messages[visibleMessages].role === 'cliente' ? 'justify-end' : 'justify-start'
-          )}>
-            <div className={cn(
-              "px-4 py-2 rounded-2xl text-sm",
-              messages[visibleMessages].role === 'cliente'
-                ? 'bg-violet/50 rounded-br-sm'
-                : 'bg-background border border-border rounded-bl-sm'
-            )}>
-              <div className="flex gap-1">
-                <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-              </div>
+        {/* Screen */}
+        <div className="rounded-[2rem] overflow-hidden bg-[#0b141a]">
+          {/* WhatsApp Header */}
+          <div className="bg-[#1f2c34] px-3 py-2 flex items-center gap-2 pt-6">
+            <ChevronLeft className="w-5 h-5 text-gray-400" />
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-violet to-violet/70 flex items-center justify-center">
+              <span className="text-white text-sm font-bold">K</span>
+            </div>
+            <div className="flex-1">
+              <p className="text-white text-sm font-semibold">Kora</p>
+              <p className="text-emerald-400 text-xs">online</p>
+            </div>
+            <div className="flex items-center gap-4 text-gray-400">
+              <Video className="w-5 h-5" />
+              <Phone className="w-4 h-4" />
+              <MoreVertical className="w-5 h-5" />
             </div>
           </div>
-        )}
+          
+          {/* Chat Area with WhatsApp pattern background */}
+          <div 
+            className="h-[320px] overflow-y-auto p-3 relative"
+            style={{
+              backgroundColor: '#0b141a',
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23182229' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            }}
+          >
+            <div className="space-y-2">
+              {messages.slice(0, visibleMessages).map((msg, idx) => (
+                <div
+                  key={idx}
+                  className={cn(
+                    "flex animate-fade-in",
+                    msg.role === 'cliente' ? 'justify-end' : 'justify-start'
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "max-w-[85%] px-3 py-1.5 text-xs text-white relative",
+                      msg.role === 'cliente'
+                        ? 'bg-[#005c4b] rounded-lg rounded-tr-none'
+                        : 'bg-[#1f2c34] rounded-lg rounded-tl-none'
+                    )}
+                  >
+                    {msg.text}
+                    <span className="text-[10px] text-gray-400 ml-2 float-right mt-1">
+                      {new Date().getHours()}:{String(new Date().getMinutes()).padStart(2, '0')}
+                    </span>
+                  </div>
+                </div>
+              ))}
+              
+              {isTyping && visibleMessages < messages.length && (
+                <div className={cn(
+                  "flex",
+                  messages[visibleMessages].role === 'cliente' ? 'justify-end' : 'justify-start'
+                )}>
+                  <div className={cn(
+                    "px-3 py-2 rounded-lg text-xs",
+                    messages[visibleMessages].role === 'cliente'
+                      ? 'bg-[#005c4b] rounded-tr-none'
+                      : 'bg-[#1f2c34] rounded-tl-none'
+                  )}>
+                    <div className="flex gap-1">
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          
+          {/* WhatsApp Input Area */}
+          <div className="bg-[#1f2c34] px-2 py-2 flex items-center gap-2">
+            <div className="flex-1 bg-[#2a3942] rounded-full px-4 py-2">
+              <span className="text-gray-500 text-xs">Mensagem</span>
+            </div>
+            <div className="w-8 h-8 bg-[#00a884] rounded-full flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

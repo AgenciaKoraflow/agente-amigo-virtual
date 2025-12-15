@@ -88,16 +88,16 @@ const DemoPopup = ({ open, onOpenChange }: DemoPopupProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto p-0 gap-0">
+      <DialogContent className="max-w-6xl h-[85vh] overflow-hidden p-0 gap-0">
         <DialogTitle className="sr-only">
           {showTech ? 'Tecnologia de Ponta a Ponta' : 'Demonstração do Funcionário Digital'}
         </DialogTitle>
         
         {!showTech ? (
           // TELA DE DEMONSTRAÇÃO
-          <div className="grid grid-cols-1 lg:grid-cols-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
             {/* Lado Esquerdo */}
-            <div className="p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-border">
+            <div className="p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-border overflow-y-auto">
               <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-2">
                 Escolha um nicho para ver o <span className="text-violet">Funcionário Digital</span> em ação
               </h2>
@@ -138,8 +138,7 @@ const DemoPopup = ({ open, onOpenChange }: DemoPopupProps) => {
               
               {/* Botão para ver tecnologia */}
               <Button 
-                variant="outline" 
-                className="w-full mt-4 border-violet/30 hover:bg-violet/10 hover:border-violet"
+                className="w-full mt-4 bg-transparent border border-violet/30 text-foreground hover:bg-violet hover:text-white hover:border-violet transition-all"
                 onClick={() => setShowTech(true)}
               >
                 Conhecer a Tecnologia
@@ -148,7 +147,7 @@ const DemoPopup = ({ open, onOpenChange }: DemoPopupProps) => {
             </div>
             
             {/* Lado Direito */}
-            <div className="p-6 lg:p-8 bg-muted/10">
+            <div className="p-6 lg:p-8 bg-muted/10 overflow-y-auto">
               <div className="flex items-center gap-2 mb-2">
                 <MessageCircle className="w-5 h-5 text-violet" />
                 <h3 className="text-lg font-semibold text-foreground">Conversa em Tempo Real</h3>
@@ -166,7 +165,7 @@ const DemoPopup = ({ open, onOpenChange }: DemoPopupProps) => {
                         : "opacity-0 translate-y-4"
                     )}
                   >
-                    ✨ {frase}
+                    {frase}
                   </p>
                 ))}
               </div>
@@ -177,7 +176,7 @@ const DemoPopup = ({ open, onOpenChange }: DemoPopupProps) => {
           </div>
         ) : (
           // TELA DE TECNOLOGIA
-          <div className="p-6 lg:p-8">
+          <div className="p-6 lg:p-8 overflow-y-auto h-full">
             {/* Header com botão voltar */}
             <div className="flex items-center gap-4 mb-6">
               <Button 
@@ -236,13 +235,16 @@ const DemoPopup = ({ open, onOpenChange }: DemoPopupProps) => {
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet/20 rounded-full">
+              <div className="flex flex-col items-center gap-1">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-violet"></span>
                 </span>
                 <span className="text-sm font-medium text-violet">
-                  Oferta por tempo limitado: 30 dias grátis para novos clientes
+                  Oferta por tempo limitado
+                </span>
+                <span className="text-sm text-violet/80">
+                  30 dias grátis para novos clientes
                 </span>
               </div>
             </div>
