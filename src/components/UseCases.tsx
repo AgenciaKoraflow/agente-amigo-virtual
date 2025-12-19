@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { ShoppingBag, Headphones, Briefcase, GraduationCap } from "lucide-react";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
@@ -7,7 +8,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const useCases = [
   {
@@ -39,6 +42,20 @@ const useCases = [
 const UseCases = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: carouselRef, isVisible: carouselVisible } = useScrollAnimation({ threshold: 0.05 });
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+    
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   return (
     <section className="py-12 md:py-24 relative">
@@ -60,10 +77,17 @@ const UseCases = () => {
           className={`scroll-hidden ${carouselVisible ? 'scroll-visible' : ''} max-w-5xl mx-auto`}
         >
           <Carousel
+            setApi={setApi}
             opts={{
               align: "start",
               loop: true,
             }}
+            plugins={[
+              Autoplay({
+                delay: 4000,
+                stopOnInteraction: true,
+              }),
+            ]}
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
@@ -92,8 +116,11 @@ const UseCases = () => {
                 );
               })}
             </CarouselContent>
-            <div className="flex justify-center gap-2 mt-6">
+            <div className="flex justify-center items-center gap-4 mt-6">
               <CarouselPrevious className="static translate-y-0" />
+              <span className="text-sm text-muted-foreground font-medium">
+                {current} / {count}
+              </span>
               <CarouselNext className="static translate-y-0" />
             </div>
           </Carousel>

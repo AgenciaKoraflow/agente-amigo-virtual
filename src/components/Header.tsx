@@ -1,14 +1,23 @@
-import logo from "@/assets/Logo-Koraflow-2.png";
+import logoLight from "@/assets/Logo-Koraflow-2.png";
+import logoDark from "@/assets/logo-roxo.png";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const Header = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleStartNow = () => {
     window.open('https://w.app/koraflow', '_blank');
   };
+
+  const logo = mounted && resolvedTheme === 'dark' ? logoDark : logoLight;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
