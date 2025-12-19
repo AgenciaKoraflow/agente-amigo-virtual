@@ -86,16 +86,16 @@ const DemoPopup = ({ open, onOpenChange }: DemoPopupProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-6xl max-h-[95vh] md:max-h-[85vh] overflow-y-auto p-0 gap-0">
+      <DialogContent className="max-w-6xl max-h-[95vh] md:max-h-[85vh] overflow-y-auto p-0 gap-0 [&>button]:top-2 [&>button]:right-2">
         <DialogTitle className="sr-only">
           {showTech ? 'Tecnologia de Ponta a Ponta' : 'Demonstração do Funcionário Digital'}
         </DialogTitle>
         
         {!showTech ? (
           // TELA DE DEMONSTRAÇÃO
-          <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
-            {/* Lado Esquerdo */}
-            <div className="p-4 md:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-border overflow-y-auto">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 min-h-0">
+            {/* Lado Esquerdo - Primeiro no mobile */}
+            <div className="p-4 md:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-border lg:overflow-y-auto order-first">
               <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground mb-2">
                 Escolha um nicho para ver o <span className="text-violet">Funcionário Digital</span> em ação
               </h2>
@@ -144,8 +144,8 @@ const DemoPopup = ({ open, onOpenChange }: DemoPopupProps) => {
               </Button>
             </div>
             
-            {/* Lado Direito */}
-            <div className="p-4 md:p-6 lg:p-8 bg-muted/10 overflow-y-auto flex flex-col">
+            {/* Lado Direito - Celular */}
+            <div className="p-4 md:p-6 lg:p-8 bg-muted/10 lg:overflow-y-auto flex flex-col order-last">
               <div className="flex items-center gap-2 mb-2">
                 <MessageCircle className="w-4 h-4 md:w-5 md:h-5 text-violet" />
                 <h3 className="text-base md:text-lg font-semibold text-foreground">Conversa em Tempo Real</h3>

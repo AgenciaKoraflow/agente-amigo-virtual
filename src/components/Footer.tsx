@@ -1,8 +1,20 @@
 import { Instagram, Facebook, Mail } from "lucide-react";
-import logo from "@/assets/Logo-Koraflow-2.png";
+import logoLight from "@/assets/Logo-Koraflow-2.png";
+import logoDark from "@/assets/logo-roxo.png";
 import qrCode from "@/assets/qr-code-whatsapp.png";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const logo = mounted && resolvedTheme === 'dark' ? logoDark : logoLight;
+
   return (
     <footer className="py-12 border-t border-border">
       <div className="container mx-auto px-4">
