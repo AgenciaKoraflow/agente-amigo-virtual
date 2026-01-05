@@ -1,7 +1,6 @@
 import { Instagram, Facebook, Mail } from "lucide-react";
 import logoLight from "@/assets/Logo-Koraflow-2.png";
 import logoDark from "@/assets/logo-roxo.png";
-import qrCode from "@/assets/qr-code-whatsapp.png";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -15,25 +14,36 @@ const Footer = () => {
 
   const logo = mounted && resolvedTheme === 'dark' ? logoDark : logoLight;
 
+  const quickLinks = [
+    { label: "Como Funciona", href: "#como-funciona" },
+    { label: "Recursos", href: "#recursos" },
+    { label: "Casos de Uso", href: "#casos-de-uso" },
+    { label: "FAQ", href: "#faq" },
+  ];
+
   return (
     <footer className="py-12 border-t border-border">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           {/* Logo */}
           <div className="flex items-center">
-            <img src={logo} alt="Koraflow" className="h-8" />
+            <img src={logo} alt="Koraflow" className="h-6 md:h-8" />
           </div>
           
-          {/* QR Code */}
-          <div className="flex flex-col items-center gap-2">
-            <img 
-              src={qrCode} 
-              alt="QR Code WhatsApp Koraflow" 
-              className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-white p-1"
-            />
-            <span className="text-xs text-muted-foreground text-center">
-              Escaneie para falar conosco
-            </span>
+          {/* Links Rápidos */}
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <h4 className="font-semibold text-sm mb-1">Links Rápidos</h4>
+            <div className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1">
+              {quickLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-muted-foreground hover:text-violet transition-smooth"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
           
           {/* Copyright */}

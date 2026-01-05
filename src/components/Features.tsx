@@ -64,7 +64,7 @@ const Features = () => {
   }, [api]);
 
   return (
-    <section className="py-12 md:py-24 relative">
+    <section id="recursos" className="py-12 md:py-24 relative">
       <div className="container mx-auto px-4">
         <div 
           ref={headerRef}
