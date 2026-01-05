@@ -24,7 +24,7 @@ const HowItWorks = () => {
   const { ref: stepsRef, isVisible: stepsVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section className="py-12 md:py-24 relative">
+    <section id="como-funciona" className="py-12 md:py-24 relative">
       <div className="absolute inset-0 gradient-subtle" />
       <div className="container mx-auto px-4 relative z-10">
         <div 
